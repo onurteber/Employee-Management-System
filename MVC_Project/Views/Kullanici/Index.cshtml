@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVC_Project.Models.Data.Model.Kullanici>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+<p>
+    @Html.ActionLink("Yeni Kullanıcı", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KullaniciAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KullaniciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sifre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.KullaniciID }) |
+            @Html.ActionLink("Ayrıntılar", "Details", new { id=item.KullaniciID }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.KullaniciID })
+        </td>
+    </tr>
+}
+
+</table>

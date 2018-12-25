@@ -1,0 +1,38 @@
+﻿@using MVC_Project.Models.Data.Model
+@model List<Departman>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<a class="btn btn-success" href="/Departman/Yeni">Yeni Departman</a>
+<h2>Departman Listesi</h2>
+<table class=" table table-bordered " id="tblDepartmanlar">
+    <thead>
+       <tr>
+           <th>ID</th>
+           <th>Departman Adı</th>
+           <th>Güncelle</th>
+           <th>Sil</th>
+           <th>Personeller</th>
+       </tr>
+    </thead>
+    <tbody>
+        @foreach (var departman in Model)
+        {
+            <tr>
+                <td>@departman.DepartmanID</td>
+                <td>@departman.Ad</td>
+                <td><a class="btn btn-primary" href="/Departman/Guncelle/@departman.DepartmanID">Güncelle</a></td>
+                <td><a class="btn btn-warning btnDepartmanSil" data-id="@departman.DepartmanID" >Sil</a></td>
+                @*<td>@Html.ActionLink("Personelleri Göster", "PersonelleriListele","Personel",
+                   new {id=departman.DepartmanID },new { @class="btn btn-primary"})</td>*@
+                <td>@Ajax.ActionLink("Personelleri Göster", "PersonelleriListele", "Personel",
+                   new { id = departman.DepartmanID },new AjaxOptions {HttpMethod="GET", UpdateTargetId= "personelListesi" }, new { @class = "btn btn-primary" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="personelListesi"></div>

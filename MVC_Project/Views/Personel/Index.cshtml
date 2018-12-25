@@ -1,0 +1,41 @@
+﻿@using MVC_Project.Models.Data.Model
+@model List<Personel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Yeni Personel", "Yeni", null, new { @class = "btn btn-success" })
+
+<h2>Personel Listesi</h2>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Adı</th>
+            <th>Soyadı</th>
+            <th>Doğum Tarihi</th>
+            <th>Departman</th>
+            <th>Maaşı</th>
+            <th>Cinsiyet</th>
+            <th>Evlilik Durumu</th>        
+       </tr>
+    </thead>
+    <tbody>
+        @foreach (var personeller in Model)
+        {
+        <tr>
+            <td>@personeller.PersonelAdi</td>
+            <td>@personeller.PersonelSoyadi</td>
+            <td>@personeller.DogumTarih.ToShortDateString()</td>
+            <td>@personeller.Departman.Ad</td>
+            <td>@personeller.Maas</td>
+            <td>@(personeller.Cinsiyet == true ? "Kadın" : "Erkek")</td>
+            <td>@(personeller.EvliMi == false ? "Bekar" : "Evli")</td>
+            <td>@Html.ActionLink("Guncelle", "Guncelle", new { id = personeller.PersonelID }, new { @class = "btn btn-success" })</td>
+            <td>@Html.ActionLink("Sil", "Sil", new { id = personeller.PersonelID }, new { @class = "btn btn-danger" })</td>
+        </tr>
+        }
+    </tbody>
+</table>

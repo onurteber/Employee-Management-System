@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MVC_Project.Models.Data.Model.Personel>
+
+<h1>Personeller</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Doğum Tarihi</th>
+            <th>Maaş</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var personel in Model)
+        {
+            <tr>
+                <td>@personel.PersonelAdi</td>
+                <td>@personel.PersonelSoyadi</td>
+                <td>@personel.DogumTarih.ToShortDateString()</td>
+                <td>@personel.Maas TL</td>
+            </tr>
+        }
+    </tbody>
+</table>

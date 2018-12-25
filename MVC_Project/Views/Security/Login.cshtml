@@ -1,0 +1,39 @@
+﻿@model MVC_Project.Models.Data.Model.Kullanici
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h2></h2>
+
+    <div class="container">
+        @using (Html.BeginForm("Login", "Security", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.KullaniciAdi)
+                @Html.TextBoxFor(m => m.KullaniciAdi, new { @class = "form-control", placeholder = "Kullanıcı Adı" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sifre)
+                @Html.TextBoxFor(m => m.Sifre, new { @class = "form-control", type = "password", placeholder = "Parola" })
+            </div>
+            <button type="submit" class="btn btn-block btn-success">Giriş Yap</button>
+        }
+    </div>
+    <h1 class="hata">@ViewBag.Mesaj</h1>
+</body>
+</html>
+<style>
+    .hata {
+        margin-left: 560px;
+        color: red;
+    }
+</style>
